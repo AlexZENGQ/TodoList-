@@ -1,0 +1,24 @@
+{% extends "todolist/base.html" %}
+{% load static %}
+
+{% block 标题 %}编辑你的待办事项{% endblock 标题 %}
+{% block css %}{% static 'todolist/css/edit.css' %}{% endblock css %}
+{% block 主体 %}
+    <br>
+    <form id="form-edit" method="POST" action="">
+        {% csrf_token %}
+      <div class="form-group">
+        <input name = "编辑页面" class="form-control form-control-lg" id="editTodo" type="text" value="{{ 待修改事项 }}">
+        <small id="help" class="form-text text-muted">在这里填入你的待办事项</small>
+      </div>
+        {% if alert %}
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+              <strong>{{ alert }}</strong>
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+        {% endif %}
+      <button type="submit" class="btn btn-primary btn-block">添 加</button>
+    </form>
+{% endblock 主体 %}
